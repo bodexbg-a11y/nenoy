@@ -51,7 +51,7 @@ const services = [
   {
     title: "Фото / відео продакшн",
     tag: "Production",
-    image: "/assets/hero-nenoy-wall.jpg",
+    image: "/assets/production-generated.jpg",
     lead: "Контент для артиста, релізу та соцмереж: фото, відео й короткі промо-формати.",
     details: [
       "Зйомка в студії та підготовка кадрів для релізу",
@@ -72,7 +72,7 @@ const priceCards = [
   {
     title: "Recording",
     tag: "Studio",
-    image: "/assets/archive/studio-reference.png",
+    image: "/assets/price-recording-generated.jpg",
     lead: "Запис, обробка голосу, зведення та мастеринг для готового релізного звучання.",
     items: [
       ["Запис до 2-х годин", "1200 ₴/год"],
@@ -85,7 +85,7 @@ const priceCards = [
   {
     title: "Пісня під ключ",
     tag: "Music & Sound",
-    image: "/assets/price-song.png",
+    image: "/assets/price-song-generated.jpg",
     lead: "Повний пакет створення треку: музика, запис, voice design, обробка, зведення та мастеринг.",
     items: [
       ["Пакет з аранжуванням", "від 600 €"],
@@ -97,7 +97,7 @@ const priceCards = [
   {
     title: "Design",
     tag: "Visual",
-    image: "/assets/price-design.png",
+    image: "/assets/price-design-generated.jpg",
     lead: "Обкладинки, анімація, lyric video, банери й візуальна упаковка релізу.",
     items: [
       ["Статична обкладинка", "від 80 $"],
