@@ -80,7 +80,7 @@ main {
 .site-header.is-scrolled {
   top: 14px;
   width: min(1180px, calc(100% - 40px));
-  padding: 10px 12px 10px 0;
+  padding: 10px 12px 10px 18px;
   border-color: var(--line);
   background: rgba(9, 11, 18, 0.78);
   backdrop-filter: blur(18px);
@@ -125,7 +125,8 @@ main {
 .header-cta,
 .primary-btn,
 .secondary-btn,
-.lead-form button {
+.lead-form button,
+.form-call-button {
   display: inline-flex;
   min-height: 44px;
   align-items: center;
@@ -136,7 +137,8 @@ main {
 
 .header-cta,
 .primary-btn,
-.lead-form button {
+.lead-form button,
+.form-call-button {
   border: 1px solid var(--yellow);
   background: var(--yellow);
   color: #101010;
@@ -151,9 +153,9 @@ main {
 .hero {
   position: relative;
   display: grid;
-  min-height: 88vh;
+  min-height: 46vh;
   align-items: end;
-  padding: 112px max(24px, calc((100vw - 1180px) / 2)) 26px;
+  padding: 112px max(24px, calc((100vw - 1180px) / 2)) 52px;
 }
 
 .hero-media {
@@ -181,17 +183,6 @@ main {
 .hero-content {
   position: relative;
   width: min(780px, 100%);
-}
-
-.hero-brand-mark {
-  position: absolute;
-  right: -110px;
-  top: -62px;
-  width: clamp(92px, 12vw, 150px);
-  height: clamp(92px, 12vw, 150px);
-  object-fit: contain;
-  opacity: 0.72;
-  filter: drop-shadow(0 20px 38px rgba(0, 0, 0, 0.4));
 }
 
 .eyebrow {
@@ -260,35 +251,6 @@ h3 {
   border: 1px solid rgba(255, 255, 255, 0.28);
   background: rgba(255, 255, 255, 0.08);
   color: #fff;
-}
-
-.hero-stats {
-  position: absolute;
-  bottom: -126px;
-  left: 0;
-  display: grid;
-  width: min(720px, 100%);
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1px;
-  margin-top: 48px;
-  overflow: hidden;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: var(--line);
-}
-
-.hero-stats span {
-  display: grid;
-  min-height: 92px;
-  align-content: center;
-  padding: 18px;
-  background: rgba(9, 11, 18, 0.7);
-  color: var(--muted);
-}
-
-.hero-stats strong {
-  color: #fff;
-  font-size: 1.8rem;
 }
 
 .intro,
@@ -511,203 +473,114 @@ footer {
   line-height: 1.7;
 }
 
-.price-grid {
+.price-poster-grid {
   position: relative;
   z-index: 2;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 14px;
-  align-items: start;
+  grid-template-columns: 1fr 1fr minmax(260px, 0.72fr);
+  gap: 18px;
+  align-items: stretch;
 }
 
-.price-card {
+.price-poster,
+.price-callout {
   position: relative;
-  min-height: 660px;
+  display: grid;
   overflow: hidden;
   border: 1px solid var(--line);
   border-radius: 8px;
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.025)),
-    rgba(5, 6, 8, 0.52);
+    linear-gradient(180deg, rgba(255, 234, 0, 0.1), rgba(255, 255, 255, 0.03)),
+    #050608;
   transition:
     border-color 180ms ease,
-    background 180ms ease,
     transform 180ms ease;
 }
 
-.price-card::before {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 2;
-  width: 100%;
-  height: 4px;
-  background: var(--yellow);
-  content: "";
-  opacity: 0;
-  transition: opacity 180ms ease;
-}
-
-.price-card.is-open {
-  border-color: rgba(255, 234, 0, 0.42);
-  background:
-    linear-gradient(180deg, rgba(255, 234, 0, 0.1), rgba(255, 255, 255, 0.03)),
-    rgba(5, 6, 8, 0.68);
-}
-
-.price-card.is-open::before {
-  opacity: 1;
-}
-
-.price-card:hover {
-  transform: translateY(-2px);
-}
-
-.price-trigger {
-  position: relative;
-  display: grid;
-  width: 100%;
-  min-height: 355px;
-  align-content: end;
-  overflow: hidden;
-  border: 0;
-  background: transparent;
-  color: inherit;
-  cursor: pointer;
-  font: inherit;
-  padding: 0;
-  text-align: left;
-}
-
-.price-trigger img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: saturate(0.9) contrast(1.06);
-  opacity: 0.7;
-  transition:
-    opacity 180ms ease,
-    transform 240ms ease;
-}
-
-.price-card.is-open .price-trigger img,
-.price-card:hover .price-trigger img {
-  opacity: 0.86;
-  transform: scale(1.035);
-}
-
-.price-trigger::after {
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(180deg, rgba(5, 6, 8, 0.05), rgba(5, 6, 8, 0.82) 72%, #050608),
-    linear-gradient(90deg, rgba(255, 234, 0, 0.18), transparent 42%);
-  content: "";
-}
-
-.price-trigger > span {
+.price-poster > span,
+.price-callout > span {
   position: absolute;
   z-index: 1;
-  top: 22px;
-  left: 22px;
+  top: 18px;
+  left: 18px;
   color: var(--yellow);
   font-family: "Nenoy Text Wide", "Inter", sans-serif;
   font-size: 0.78rem;
   line-height: 1;
 }
 
-.price-trigger strong {
-  position: relative;
-  z-index: 1;
-  max-width: 260px;
-  padding: 0 22px 12px;
-  color: #fff;
-  font-family: "Nenoy Heading", sans-serif;
-  font-size: clamp(1.45rem, 2.5vw, 2.25rem);
-  font-weight: 700;
-  line-height: 1.05;
-  text-transform: uppercase;
+.price-poster img {
+  width: 100%;
+  height: 640px;
+  object-fit: cover;
+  object-position: top center;
+  filter: saturate(1.02) contrast(1.04);
 }
 
-.price-trigger small {
-  display: inline-flex;
-  position: relative;
-  z-index: 1;
-  width: fit-content;
-  margin: 0 22px 22px;
-  padding: 8px 10px;
-  border: 1px solid rgba(255, 234, 0, 0.32);
-  border-radius: 6px;
-  background: rgba(9, 11, 18, 0.64);
-  color: var(--yellow);
-  font-size: 0.72rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.price-panel {
+.price-poster div {
   display: grid;
-  max-height: 0;
-  opacity: 0;
-  transform: translateY(-8px);
-  transition:
-    max-height 280ms ease,
-    opacity 220ms ease,
-    transform 220ms ease;
+  gap: 8px;
+  padding: 20px 20px 22px;
+  background: rgba(5, 6, 8, 0.92);
 }
 
-.price-card.is-open .price-panel {
-  max-height: 520px;
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.price-panel ul {
-  display: grid;
+.price-poster h3,
+.price-callout h3 {
   margin: 0;
-  padding: 18px 22px 22px;
-  list-style: none;
-}
-
-.price-panel li {
-  position: relative;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 12px;
-  align-items: baseline;
-  padding: 12px 0 12px 16px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  color: #e5e8ef;
-  font-size: 0.94rem;
-  font-weight: 400;
-  line-height: 1.45;
-}
-
-.price-panel li:last-child {
-  border-bottom: 0;
-}
-
-.price-panel li::before {
-  position: absolute;
-  top: 0.58em;
-  left: 0;
-  width: 6px;
-  height: 6px;
-  background: var(--yellow);
-  content: "";
-}
-
-.price-panel li span {
-  min-width: 0;
-}
-
-.price-panel li strong {
   color: #fff;
-  font-size: 0.95rem;
-  font-weight: 400;
-  white-space: nowrap;
+  font-size: 1.28rem;
+  text-transform: uppercase;
+}
+
+.price-poster p,
+.price-callout p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.94rem;
+  line-height: 1.62;
+}
+
+.price-poster:hover,
+.price-callout:hover {
+  border-color: rgba(255, 234, 0, 0.48);
+  transform: translateY(-2px);
+}
+
+.price-callout {
+  min-height: 100%;
+  align-content: end;
+  padding: 28px;
+  background:
+    linear-gradient(135deg, rgba(255, 234, 0, 0.22), transparent 45%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.025)),
+    #08090d;
+}
+
+.price-callout::after {
+  position: absolute;
+  inset: 24px;
+  border: 1px solid rgba(255, 234, 0, 0.28);
+  border-radius: 8px;
+  content: "";
+  pointer-events: none;
+}
+
+.price-callout h3 {
+  max-width: 220px;
+  font-size: clamp(1.8rem, 3.1vw, 2.55rem);
+  line-height: 1;
+}
+
+.price-callout a {
+  display: inline-flex;
+  width: fit-content;
+  margin-top: 26px;
+  padding: 13px 16px;
+  border: 1px solid var(--yellow);
+  border-radius: 6px;
+  background: var(--yellow);
+  color: #101010;
+  font-weight: 700;
 }
 
 .price-note {
@@ -1134,7 +1007,8 @@ footer {
   resize: vertical;
 }
 
-.lead-form button {
+.lead-form button,
+.form-call-button {
   width: 100%;
   margin-top: 4px;
   cursor: pointer;
@@ -1146,25 +1020,78 @@ footer {
     box-shadow 160ms ease;
 }
 
-.lead-form button small {
-  display: none;
+.form-call-button {
+  flex-direction: column;
+  gap: 2px;
+  min-height: 58px;
 }
 
-.lead-form button:hover {
+.form-call-button small {
+  font-size: 0.78rem;
+  font-weight: 400;
+  opacity: 0.72;
+}
+
+.lead-form button:hover,
+.form-call-button:hover {
   box-shadow: 0 14px 28px rgba(255, 234, 0, 0.18);
   transform: translateY(-1px);
 }
 
 footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: minmax(260px, 0.52fr) 1fr;
+  gap: 22px;
+  align-items: stretch;
   padding: 36px 0 46px;
   color: var(--muted);
 }
 
 footer strong {
+  display: block;
+  margin-bottom: 12px;
   color: var(--yellow);
+  font-family: "Nenoy Heading", sans-serif;
+  font-size: 1.65rem;
+}
+
+.footer-info {
+  display: grid;
+  align-content: center;
+  padding: 26px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.055);
+}
+
+.footer-info span,
+.footer-info p {
+  margin: 0 0 8px;
+}
+
+.footer-info a {
+  width: fit-content;
+  margin: 8px 0 10px;
+  color: #fff;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.footer-map {
+  min-height: 260px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.055);
+}
+
+.footer-map iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 260px;
+  border: 0;
+  filter: grayscale(1) invert(0.88) contrast(0.92);
 }
 
 @media (max-width: 980px) {
@@ -1191,12 +1118,12 @@ footer strong {
     min-height: 320px;
   }
 
-  .price-grid {
+  .price-poster-grid {
     grid-template-columns: 1fr;
   }
 
-  .price-trigger {
-    min-height: 280px;
+  .price-poster img {
+    height: auto;
   }
 
   .lead-form {
@@ -1219,7 +1146,8 @@ footer strong {
   }
 
   .price-header,
-  .price-grid {
+  .price-poster-grid,
+  footer {
     grid-template-columns: 1fr;
   }
 }
@@ -1252,10 +1180,6 @@ footer strong {
     line-height: 1.05;
   }
 
-  .hero-brand-mark {
-    display: none;
-  }
-
   .hero-actions {
     display: grid;
     grid-template-columns: 1fr;
@@ -1266,7 +1190,6 @@ footer strong {
     width: 100%;
   }
 
-  .hero-stats,
   .service-showcase,
   .partner-strip {
     grid-template-columns: 1fr;
@@ -1288,18 +1211,6 @@ footer strong {
 
   .price-header h2 {
     font-size: clamp(2.1rem, 11vw, 3rem);
-  }
-
-  .price-trigger {
-    min-height: 250px;
-  }
-
-  .hero-stats {
-    position: static;
-  }
-
-  .hero-stats span {
-    min-height: 74px;
   }
 
   .intro {

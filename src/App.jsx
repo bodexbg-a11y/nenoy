@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
 
+const phoneLabel = "+380 67 893 23 23";
+const phoneHref = "tel:+380678932323";
+
 const services = [
   {
     title: "Студія звукозапису",
@@ -65,39 +68,16 @@ const flow = [
   "Обкладинка, дистрибуція, промо",
 ];
 
-const priceGroups = [
+const pricePosters = [
   {
-    title: "Recording",
-    image: "/assets/archive/studio-reference.png",
-    items: [
-      { name: "Запис до 2-х годин", price: "1200 ₴/год" },
-      { name: "Запис від 3-х годин", price: "1000 ₴/год" },
-      { name: "Зведення", price: "від 500 ₴" },
-      { name: "Обробка голосу", price: "від 1000 ₴" },
-      { name: "Мастеринг", price: "від 1000 ₴" },
-    ],
+    title: "Пісня під ключ",
+    image: "/assets/price-song.png",
+    text: "Пакети для повного створення треку: аранжування, запис, voice design, обробка, зведення та мастеринг.",
   },
   {
-    title: "Voice",
-    image: "/assets/archive/production-reference.png",
-    items: [
-      { name: "Voice дизайн", price: "від 2000 ₴" },
-      { name: "Урок вокалу", price: "1200 ₴/год" },
-      { name: "Супровід викладача до 1 год", price: "1500 ₴/год" },
-      { name: "Супровід викладача від 2-х год", price: "1200 ₴/год" },
-      { name: "Послуги вокалістів", price: "від 1200 ₴/год" },
-    ],
-  },
-  {
-    title: "Music & Sound",
-    image: "/assets/brand/nenoy-wave-yellow.jpg",
-    items: [
-      { name: "Аранжування", price: "від 300 €" },
-      { name: "Біт під ключ", price: "від 150 €" },
-      { name: "Текст пісні українською", price: "від 150 €" },
-      { name: "Текст пісні англійською", price: "від 250 €" },
-      { name: "Ексклюзивні права на готові біти", price: "від 100 $" },
-    ],
+    title: "Design",
+    image: "/assets/price-design.png",
+    text: "Обкладинки, анімації, lyric video, банери та візуальні матеріали для релізу й соцмереж.",
   },
 ];
 
@@ -117,7 +97,6 @@ const socials = [
 
 function App() {
   const [isHeaderSolid, setIsHeaderSolid] = useState(false);
-  const [activePrice, setActivePrice] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => setIsHeaderSolid(window.scrollY > 56);
@@ -141,8 +120,8 @@ function App() {
           <a href="#why">Чому ми</a>
           <a href="#contact">Контакти</a>
         </nav>
-        <a className="header-cta" href="#contact">
-          Записатись
+        <a className="header-cta" href={phoneHref}>
+          Зателефонувати
         </a>
       </header>
 
@@ -151,34 +130,15 @@ function App() {
           <img src="/assets/hero-nenoy-wall.jpg" alt="" />
         </div>
         <div className="hero-content">
-          <img className="hero-brand-mark" src="/assets/brand/nenoy-logo-color.png" alt="" />
           <p className="eyebrow">Ласкаво просимо</p>
           <h1>Тут звуки стають музикою, а мрії реальністю.</h1>
-          <p className="hero-copy">
-            NENOY - це екосистема музичної творчості: студія звукозапису,
-            випуск і просування, школа вокалу, дизайн та фото / відео продакшн.
-          </p>
           <div className="hero-actions">
-            <a className="primary-btn" href="#contact">
-              Записатись
+            <a className="primary-btn" href={phoneHref}>
+              Зателефонувати
             </a>
             <a className="secondary-btn" href="#services">
               Подивитись послуги
             </a>
-          </div>
-          <div className="hero-stats" aria-label="Ключові напрямки NENOY">
-            <span>
-              <strong>5</strong>
-              напрямків
-            </span>
-            <span>
-              <strong>360</strong>
-              підтримка артиста
-            </span>
-            <span>
-              <strong>1</strong>
-              творча команда
-            </span>
           </div>
         </div>
       </section>
@@ -228,39 +188,30 @@ function App() {
             <h2>Прайс</h2>
           </div>
           <p>
-            Базові формати для запису, голосу та музичного продакшну. Пакет
-            можна зібрати під конкретний трек, дедлайн і рівень готовності демо.
+            Актуальні пакети для треку, дизайну та повного супроводу релізу.
+            Щоб підібрати формат під задачу, зателефонуйте нам напряму.
           </p>
         </div>
-        <div className="price-grid">
-          {priceGroups.map((group, groupIndex) => (
-            <article
-              className={`price-card${activePrice === groupIndex ? " is-open" : ""}`}
-              key={group.title}
-            >
-              <button
-                aria-expanded={activePrice === groupIndex}
-                className="price-trigger"
-                onClick={() => setActivePrice(groupIndex)}
-                type="button"
-              >
-                <span>{String(groupIndex + 1).padStart(2, "0")}</span>
-                <img src={group.image} alt="" />
-                <strong>{group.title}</strong>
-                <small>{activePrice === groupIndex ? "відкрито" : "дивитись"}</small>
-              </button>
-              <div className="price-panel">
-                <ul>
-                  {group.items.map((item) => (
-                    <li key={item.name}>
-                      <span>{item.name}</span>
-                      <strong>{item.price}</strong>
-                    </li>
-                  ))}
-                </ul>
+        <div className="price-poster-grid">
+          {pricePosters.map((poster, index) => (
+            <article className="price-poster" key={poster.title}>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <img src={poster.image} alt={`Прайс ${poster.title}`} />
+              <div>
+                <h3>{poster.title}</h3>
+                <p>{poster.text}</p>
               </div>
             </article>
           ))}
+          <article className="price-callout">
+            <span>03</span>
+            <h3>Підібрати пакет</h3>
+            <p>
+              Розкажіть, що потрібно: запис, пісня під ключ, дизайн або відео.
+              Ми швидко зорієнтуємо по бюджету й найближчому вільному часу.
+            </p>
+            <a href={phoneHref}>{phoneLabel}</a>
+          </article>
         </div>
         <div className="price-note">
           <strong>Важливо:</strong>
@@ -354,15 +305,15 @@ function App() {
         <div className="contact-copy">
           <img className="contact-brand-art" src="/assets/brand/nenoy-wave-yellow.jpg" alt="" />
           <p className="eyebrow">Music | People | Love</p>
-          <h2>Записатись у студію</h2>
+          <h2>Зателефонувати в студію</h2>
           <p>
-            Розкажіть про трек, демо або задачу. Команда NENOY підкаже формат
-            роботи та наступний крок.
+            Розкажіть про трек, демо або задачу телефоном. Команда NENOY
+            підкаже формат роботи та наступний крок.
           </p>
           <div className="session-card" aria-label="Формат роботи">
             <span>Studio session</span>
             <strong>Запис / продакшн / реліз</strong>
-            <p>Залиште контакт, і ми повернемось із пропозицією формату роботи.</p>
+            <p>Телефонуйте, і ми підберемо формат роботи під вашу задачу.</p>
           </div>
           <div className="socials">
             {socials.map((social) => (
@@ -405,16 +356,28 @@ function App() {
             Повідомлення
             <textarea placeholder="Коротко опишіть задачу, стиль, референси або дедлайн" rows="4" />
           </label>
-          <button type="button">
-            <span>Надіслати заявку</span>
-            <small>→</small>
-          </button>
+          <a className="form-call-button" href={phoneHref}>
+            <span>Зателефонувати</span>
+            <small>{phoneLabel}</small>
+          </a>
         </form>
       </section>
 
       <footer>
-        <strong>NENOY</strong>
-        <span>© NENOY Production</span>
+        <div className="footer-info">
+          <strong>NENOY</strong>
+          <span>© NENOY Production</span>
+          <a href={phoneHref}>{phoneLabel}</a>
+          <p>Київ, біля метро Осокорки</p>
+        </div>
+        <div className="footer-map">
+          <iframe
+            title="NENOY біля метро Осокорки"
+            src="https://www.google.com/maps?q=%D0%BC%D0%B5%D1%82%D1%80%D0%BE%20%D0%9E%D1%81%D0%BE%D0%BA%D0%BE%D1%80%D0%BA%D0%B8%2C%20%D0%9A%D0%B8%D1%97%D0%B2&output=embed"
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          />
+        </div>
       </footer>
     </main>
   );
