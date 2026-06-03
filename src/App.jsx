@@ -68,16 +68,44 @@ const flow = [
   "Обкладинка, дистрибуція, промо",
 ];
 
-const pricePosters = [
+const priceCards = [
+  {
+    title: "Recording",
+    tag: "Studio",
+    image: "/assets/archive/studio-reference.png",
+    lead: "Запис, обробка голосу, зведення та мастеринг для готового релізного звучання.",
+    items: [
+      ["Запис до 2-х годин", "1200 ₴/год"],
+      ["Запис від 3-х годин", "1000 ₴/год"],
+      ["Зведення", "від 500 ₴"],
+      ["Обробка голосу", "від 1000 ₴"],
+      ["Мастеринг", "від 1000 ₴"],
+    ],
+  },
   {
     title: "Пісня під ключ",
+    tag: "Music & Sound",
     image: "/assets/price-song.png",
-    text: "Пакети для повного створення треку: аранжування, запис, voice design, обробка, зведення та мастеринг.",
+    lead: "Повний пакет створення треку: музика, запис, voice design, обробка, зведення та мастеринг.",
+    items: [
+      ["Пакет з аранжуванням", "від 600 €"],
+      ["Пакет з бітом", "від 400 €"],
+      ["Текст пісні українською", "від 500 €"],
+      ["Текст пісні іноземною", "від 600 €"],
+    ],
   },
   {
     title: "Design",
+    tag: "Visual",
     image: "/assets/price-design.png",
-    text: "Обкладинки, анімації, lyric video, банери та візуальні матеріали для релізу й соцмереж.",
+    lead: "Обкладинки, анімація, lyric video, банери й візуальна упаковка релізу.",
+    items: [
+      ["Статична обкладинка", "від 80 $"],
+      ["Full-пакет статичних обкладинок", "від 110 $"],
+      ["Full-пакет з анімацією", "від 150 $"],
+      ["Авторський lyric video", "від 200 €"],
+      ["Афіша / банер", "від 1000 ₴"],
+    ],
   },
 ];
 
@@ -192,26 +220,28 @@ function App() {
             Щоб підібрати формат під задачу, зателефонуйте нам напряму.
           </p>
         </div>
-        <div className="price-poster-grid">
-          {pricePosters.map((poster, index) => (
-            <article className="price-poster" key={poster.title}>
+        <div className="price-card-grid">
+          {priceCards.map((card, index) => (
+            <article className="price-tile" key={card.title}>
               <span>{String(index + 1).padStart(2, "0")}</span>
-              <img src={poster.image} alt={`Прайс ${poster.title}`} />
-              <div>
-                <h3>{poster.title}</h3>
-                <p>{poster.text}</p>
+              <div className="price-tile-media">
+                <img src={card.image} alt="" />
+              </div>
+              <div className="price-tile-body">
+                <p>{card.tag}</p>
+                <h3>{card.title}</h3>
+                <small>{card.lead}</small>
+                <ul>
+                  {card.items.map(([name, price]) => (
+                    <li key={name}>
+                      <span>{name}</span>
+                      <strong>{price}</strong>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </article>
           ))}
-          <article className="price-callout">
-            <span>03</span>
-            <h3>Підібрати пакет</h3>
-            <p>
-              Розкажіть, що потрібно: запис, пісня під ключ, дизайн або відео.
-              Ми швидко зорієнтуємо по бюджету й найближчому вільному часу.
-            </p>
-            <a href={phoneHref}>{phoneLabel}</a>
-          </article>
         </div>
         <div className="price-note">
           <strong>Важливо:</strong>
@@ -305,15 +335,15 @@ function App() {
         <div className="contact-copy">
           <img className="contact-brand-art" src="/assets/brand/nenoy-wave-yellow.jpg" alt="" />
           <p className="eyebrow">Music | People | Love</p>
-          <h2>Зателефонувати в студію</h2>
+          <h2>Записатись у студію</h2>
           <p>
-            Розкажіть про трек, демо або задачу телефоном. Команда NENOY
-            підкаже формат роботи та наступний крок.
+            Розкажіть про трек, демо або задачу. Команда NENOY підкаже формат
+            роботи та наступний крок.
           </p>
           <div className="session-card" aria-label="Формат роботи">
             <span>Studio session</span>
             <strong>Запис / продакшн / реліз</strong>
-            <p>Телефонуйте, і ми підберемо формат роботи під вашу задачу.</p>
+            <p>Залиште контакт, і ми повернемось із пропозицією формату роботи.</p>
           </div>
           <div className="socials">
             {socials.map((social) => (
@@ -356,10 +386,10 @@ function App() {
             Повідомлення
             <textarea placeholder="Коротко опишіть задачу, стиль, референси або дедлайн" rows="4" />
           </label>
-          <a className="form-call-button" href={phoneHref}>
-            <span>Зателефонувати</span>
-            <small>{phoneLabel}</small>
-          </a>
+          <button type="button">
+            <span>Надіслати заявку</span>
+            <small>→</small>
+          </button>
         </form>
       </section>
 

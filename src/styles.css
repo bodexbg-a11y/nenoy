@@ -125,8 +125,7 @@ main {
 .header-cta,
 .primary-btn,
 .secondary-btn,
-.lead-form button,
-.form-call-button {
+.lead-form button {
   display: inline-flex;
   min-height: 44px;
   align-items: center;
@@ -137,8 +136,7 @@ main {
 
 .header-cta,
 .primary-btn,
-.lead-form button,
-.form-call-button {
+.lead-form button {
   border: 1px solid var(--yellow);
   background: var(--yellow);
   color: #101010;
@@ -153,7 +151,7 @@ main {
 .hero {
   position: relative;
   display: grid;
-  min-height: 46vh;
+  min-height: 75vh;
   align-items: end;
   padding: 112px max(24px, calc((100vw - 1180px) / 2)) 52px;
 }
@@ -473,114 +471,159 @@ footer {
   line-height: 1.7;
 }
 
-.price-poster-grid {
+.price-card-grid {
   position: relative;
   z-index: 2;
   display: grid;
-  grid-template-columns: 1fr 1fr minmax(260px, 0.72fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 18px;
   align-items: stretch;
 }
 
-.price-poster,
-.price-callout {
+.price-tile {
   position: relative;
   display: grid;
+  grid-template-rows: 230px 1fr;
   overflow: hidden;
   border: 1px solid var(--line);
   border-radius: 8px;
   background:
+    linear-gradient(135deg, rgba(255, 234, 0, 0.18), transparent 38%),
     linear-gradient(180deg, rgba(255, 234, 0, 0.1), rgba(255, 255, 255, 0.03)),
     #050608;
   transition:
     border-color 180ms ease,
     transform 180ms ease;
+  min-height: 690px;
 }
 
-.price-poster > span,
-.price-callout > span {
+.price-tile::before,
+.price-tile::after {
   position: absolute;
-  z-index: 1;
+  z-index: 2;
+  width: 72px;
+  height: 24px;
+  background: var(--yellow);
+  content: "";
+  transform: skewX(-28deg);
+}
+
+.price-tile::before {
   top: 18px;
-  left: 18px;
+  right: 34px;
+}
+
+.price-tile::after {
+  right: -18px;
+  bottom: 120px;
+  transform: rotate(90deg) skewX(-28deg);
+}
+
+.price-tile > span {
+  position: absolute;
+  z-index: 3;
+  top: 22px;
+  left: 22px;
   color: var(--yellow);
   font-family: "Nenoy Text Wide", "Inter", sans-serif;
   font-size: 0.78rem;
   line-height: 1;
 }
 
-.price-poster img {
-  width: 100%;
-  height: 640px;
-  object-fit: cover;
-  object-position: top center;
-  filter: saturate(1.02) contrast(1.04);
-}
-
-.price-poster div {
-  display: grid;
-  gap: 8px;
-  padding: 20px 20px 22px;
-  background: rgba(5, 6, 8, 0.92);
-}
-
-.price-poster h3,
-.price-callout h3 {
-  margin: 0;
-  color: #fff;
-  font-size: 1.28rem;
-  text-transform: uppercase;
-}
-
-.price-poster p,
-.price-callout p {
-  margin: 0;
-  color: var(--muted);
-  font-size: 0.94rem;
-  line-height: 1.62;
-}
-
-.price-poster:hover,
-.price-callout:hover {
+.price-tile:hover {
   border-color: rgba(255, 234, 0, 0.48);
   transform: translateY(-2px);
 }
 
-.price-callout {
-  min-height: 100%;
-  align-content: end;
-  padding: 28px;
-  background:
-    linear-gradient(135deg, rgba(255, 234, 0, 0.22), transparent 45%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.025)),
-    #08090d;
+.price-tile-media {
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(255, 234, 0, 0.24);
+  background: #050608;
 }
 
-.price-callout::after {
+.price-tile-media::after {
   position: absolute;
-  inset: 24px;
-  border: 1px solid rgba(255, 234, 0, 0.28);
-  border-radius: 8px;
+  inset: 0;
+  background:
+    linear-gradient(0deg, #050608 0%, rgba(5, 6, 8, 0.36) 52%, rgba(5, 6, 8, 0.14)),
+    linear-gradient(90deg, rgba(255, 234, 0, 0.18), transparent 46%);
   content: "";
-  pointer-events: none;
 }
 
-.price-callout h3 {
-  max-width: 220px;
-  font-size: clamp(1.8rem, 3.1vw, 2.55rem);
-  line-height: 1;
+.price-tile-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  filter: saturate(1.02) contrast(1.05) brightness(0.82);
 }
 
-.price-callout a {
-  display: inline-flex;
-  width: fit-content;
-  margin-top: 26px;
-  padding: 13px 16px;
-  border: 1px solid var(--yellow);
-  border-radius: 6px;
+.price-tile-body {
+  display: grid;
+  align-content: start;
+  gap: 14px;
+  padding: 26px 24px 28px;
+}
+
+.price-tile-body > p {
+  margin: 0;
+  color: var(--yellow);
+  font-family: "Nenoy Text Wide", "Inter", sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.price-tile h3 {
+  margin: 0;
+  color: #fff;
+  font-size: clamp(1.55rem, 2.4vw, 2.15rem);
+  line-height: 1.04;
+  text-transform: uppercase;
+}
+
+.price-tile small {
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+.price-tile ul {
+  display: grid;
+  gap: 0;
+  margin: 8px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.price-tile li {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 14px;
+  align-items: baseline;
+  padding: 13px 0 13px 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.09);
+  color: #e7e9ef;
+  font-size: 0.92rem;
+  line-height: 1.35;
+}
+
+.price-tile li::before {
+  position: absolute;
+  top: 1.08rem;
+  left: 0;
+  width: 5px;
+  height: 5px;
   background: var(--yellow);
-  color: #101010;
+  content: "";
+}
+
+.price-tile li strong {
+  color: #fff;
   font-weight: 700;
+  white-space: nowrap;
 }
 
 .price-note {
@@ -1007,8 +1050,7 @@ footer {
   resize: vertical;
 }
 
-.lead-form button,
-.form-call-button {
+.lead-form button {
   width: 100%;
   margin-top: 4px;
   cursor: pointer;
@@ -1020,20 +1062,11 @@ footer {
     box-shadow 160ms ease;
 }
 
-.form-call-button {
-  flex-direction: column;
-  gap: 2px;
-  min-height: 58px;
+.lead-form button small {
+  display: none;
 }
 
-.form-call-button small {
-  font-size: 0.78rem;
-  font-weight: 400;
-  opacity: 0.72;
-}
-
-.lead-form button:hover,
-.form-call-button:hover {
+.lead-form button:hover {
   box-shadow: 0 14px 28px rgba(255, 234, 0, 0.18);
   transform: translateY(-1px);
 }
@@ -1118,12 +1151,16 @@ footer strong {
     min-height: 320px;
   }
 
-  .price-poster-grid {
+  .price-card-grid {
     grid-template-columns: 1fr;
   }
 
-  .price-poster img {
-    height: auto;
+  .price-tile {
+    min-height: auto;
+  }
+
+  .price-tile-media {
+    min-height: 280px;
   }
 
   .lead-form {
@@ -1146,7 +1183,7 @@ footer strong {
   }
 
   .price-header,
-  .price-poster-grid,
+  .price-card-grid,
   footer {
     grid-template-columns: 1fr;
   }
