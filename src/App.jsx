@@ -13,20 +13,31 @@ const services = [
     ],
   },
   {
-    title: "Музична дистрибуція",
+    title: "Випуск та просування",
     tag: "Release",
-    image: "/assets/archive/production-reference.png",
-    lead: "Поширення музики від артиста до слухача через цифрові платформи.",
+    image: "/assets/brand/nenoy-wave-yellow.jpg",
+    lead: "Підготовка релізу до виходу та підтримка треку після старту на платформах.",
     details: [
-      "Підготовка релізу, назв, обкладинки та метаданих",
-      "Доставка треку на онлайн-платформи",
-      "Консультація щодо просування після виходу",
+      "Оформлення назви, обкладинки та метаданих",
+      "План випуску й базова релізна стратегія",
+      "Поради щодо просування після публікації",
+    ],
+  },
+  {
+    title: "Школа вокалу",
+    tag: "Voice school",
+    image: "/assets/archive/production-reference.png",
+    lead: "Індивідуальні заняття з вокалу, підготовка до запису та робота з голосом.",
+    details: [
+      "Постановка голосу та вокальна техніка",
+      "Розбір пісні, інтонації та подачі",
+      "Підготовка артиста до студійного запису",
     ],
   },
   {
     title: "Дизайн студія",
     tag: "Design",
-    image: "/assets/archive/production-reference.png",
+    image: "/assets/brand/nenoy-wave-yellow.jpg",
     lead: "Візуальна упаковка артиста: від обкладинки пісні до повної айдентики.",
     details: [
       "Дизайн обкладинки для синглу або альбому",
@@ -35,14 +46,14 @@ const services = [
     ],
   },
   {
-    title: "Музична школа",
-    tag: "School",
-    image: "/assets/archive/production-reference.png",
-    lead: "Індивідуальні заняття для голосу, інструментів і створення музики в DAW.",
+    title: "Фото / відео продакшн",
+    tag: "Production",
+    image: "/assets/hero-nenoy-wall.jpg",
+    lead: "Контент для артиста, релізу та соцмереж: фото, відео й короткі промо-формати.",
     details: [
-      "Урок вокалу тривалістю 60 хвилин",
-      "Гітара, фортепіано та практика музичної форми",
-      "Авторський курс зі створення музики в DAW-програмах",
+      "Зйомка в студії та підготовка кадрів для релізу",
+      "Короткі відео для Reels, TikTok та промо",
+      "Візуальний контент у стилі NENOY",
     ],
   },
 ];
@@ -137,7 +148,7 @@ function App() {
 
       <section className="hero" id="top">
         <div className="hero-media" aria-hidden="true">
-          <img src="/assets/archive/studio-reference.png" alt="" />
+          <img src="/assets/hero-nenoy-wall.jpg" alt="" />
         </div>
         <div className="hero-content">
           <img className="hero-brand-mark" src="/assets/brand/nenoy-logo-color.png" alt="" />
@@ -145,7 +156,7 @@ function App() {
           <h1>Тут звуки стають музикою, а мрії реальністю.</h1>
           <p className="hero-copy">
             NENOY - це екосистема музичної творчості: студія звукозапису,
-            дистрибуція, дизайн і школа в одному просторі.
+            випуск і просування, школа вокалу, дизайн та фото / відео продакшн.
           </p>
           <div className="hero-actions">
             <a className="primary-btn" href="#contact">
@@ -157,7 +168,7 @@ function App() {
           </div>
           <div className="hero-stats" aria-label="Ключові напрямки NENOY">
             <span>
-              <strong>4</strong>
+              <strong>5</strong>
               напрямків
             </span>
             <span>
@@ -386,7 +397,8 @@ function App() {
               <option>Зведення / мастеринг</option>
               <option>Трек під ключ</option>
               <option>Обкладинка / упаковка артиста</option>
-              <option>Музична школа</option>
+              <option>Школа вокалу</option>
+              <option>Фото / відео продакшн</option>
             </select>
           </label>
           <label>
