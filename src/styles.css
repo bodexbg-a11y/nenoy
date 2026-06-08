@@ -810,7 +810,20 @@ footer {
 .gift-copy {
   display: grid;
   align-content: center;
-  padding: 54px;
+  padding: 54px 64px;
+}
+
+.gift-copy h2 {
+  display: grid;
+  gap: 4px;
+  max-width: 100%;
+  font-size: clamp(1.9rem, 2.25vw, 2.2rem);
+  line-height: 1.06;
+}
+
+.gift-copy h2 span {
+  display: block;
+  white-space: nowrap;
 }
 
 .gift-copy p:not(.eyebrow) {
@@ -1344,6 +1357,11 @@ footer {
 
   .gift-copy {
     padding: 30px 22px;
+  }
+
+  .gift-copy h2 {
+    gap: 2px;
+    font-size: 1.8rem;
   }
 
   .partner-strip {
